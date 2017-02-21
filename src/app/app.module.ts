@@ -3,8 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
+import { AuthGuard } from './auth.service';
+import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { UsersComponent } from './users/users.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -17,15 +22,19 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    UsersComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    routes
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
