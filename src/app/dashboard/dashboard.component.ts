@@ -1,27 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class AppComponent {
 
-  public isLoggedIn = false;
+export class DashboardComponent implements OnInit {
+
+  name: any;
+  state: string = '';
 
   constructor(public af: AngularFire,private router: Router) {
+
     this.af.auth.subscribe(auth => {
       if(auth) {
-        this.isLoggedIn = true;
+        this.name = auth;
       }
     });
+
   }
 
   logout() {
      this.af.auth.logout();
-     this.isLoggedIn = false;
+     console.log('logged out');
      this.router.navigateByUrl('/login');
   }
+
+  ngOnInit() {}
 }

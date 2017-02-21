@@ -1,0 +1,12 @@
+<form #formData='ngForm' (ngSubmit)="onSubmit(formData)" class="form-signin">
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <span class="error" *ngIf="error">{{ error }}</span>
+
+  <label for="email" class="sr-only">Email address</label>
+  <input type="email" placeholder="Email address.." (ngModel)="email" name="email" class="form-control" required autofocus>
+
+  <label for="password" class="sr-only">Password</label>
+  <input type="password" placeholder="Password" (ngModel)="password" name="password" class="form-control" required>
+
+  <button type="submit" [disabled]="!formData.valid" class="btn btn-lg btn-primary btn-block">Log In</button>
+</form>
