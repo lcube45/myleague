@@ -10,4 +10,5 @@ $ cd <project-path>
 $ ng init
 $ git commit -a -m 'init codebase'
 $ git push
+$ npm install angularfire2 firebase --save
 ```
